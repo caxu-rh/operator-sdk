@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -80,10 +81,8 @@ const (
 )
 
 func (k EntryKind) Validate() error {
-	for _, t := range []EntryKind{Addition, Change, Removal, Deprecation, Bugfix} {
-		if k == t {
-			return nil
-		}
+	if slices.Contains([]EntryKind{Addition, Change, Removal, Deprecation, Bugfix}, k) {
+		return nil
 	}
 	return fmt.Errorf("%q is not a supported kind", k)
 }

@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"math"
 	"reflect"
+	"slices"
 	"strings"
 	"unicode"
 
@@ -247,10 +248,5 @@ func isExported(name string) bool {
 }
 
 func contains(options []string, key string) bool {
-	for _, opt := range options {
-		if opt == key {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(options, key)
 }
