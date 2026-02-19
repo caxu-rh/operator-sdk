@@ -170,7 +170,7 @@ func makeMockMarkedFields() (markedFields map[crd.TypeIdent][]*fieldInfo, expect
 	descBuckets := make(map[int][]v1alpha1.SpecDescriptor, 100)
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	markedFields = make(map[crd.TypeIdent][]*fieldInfo, 100)
-	for i := 0; i < 100; i++ {
+	for range 100 {
 		s, err := kbutil.RandomSuffix()
 		if err != nil {
 			panic(err)

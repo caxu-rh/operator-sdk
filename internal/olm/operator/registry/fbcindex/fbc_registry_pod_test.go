@@ -371,7 +371,7 @@ func randField() string {
 
 	fieldNameLength := rnd.Intn(15) + 5
 	fieldName := make([]byte, fieldNameLength)
-	for i := 0; i < fieldNameLength; i++ {
+	for i := range fieldNameLength {
 		fieldName[i] = charTbl[rnd.Intn('z'-'a'+1)]
 	}
 
@@ -379,7 +379,7 @@ func randField() string {
 	size := rnd.Intn(40) + 5
 
 	value := make([]byte, size)
-	for i := 0; i < size; i++ {
+	for i := range size {
 		value[i] = charTbl[rnd.Intn(len(charTbl))]
 	}
 	return fmt.Sprintf("%s: %q\n", fieldName, value)
@@ -390,7 +390,7 @@ func generateRandYaml() string {
 
 	b := strings.Builder{}
 	b.WriteString("---\n")
-	for i := 0; i < numLines; i++ {
+	for range numLines {
 		b.WriteString(randField())
 	}
 	return b.String()

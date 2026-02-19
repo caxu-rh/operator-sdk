@@ -11,7 +11,7 @@ import (
 
 func getChangelogEntries(n int) []ChangelogEntry {
 	entries := make([]ChangelogEntry, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		entries[i] = ChangelogEntry{
 			Description: fmt.Sprintf("Changelog entry description %d.", i),
 			Link:        "[#999999](https://example.com/test/changelog/pulls/999999)",

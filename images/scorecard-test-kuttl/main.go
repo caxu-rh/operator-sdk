@@ -84,7 +84,7 @@ func getTestStatus(tc []*Testcase) (s v1alpha3.TestStatus) {
 		return s
 	}
 
-	for i := 0; i < len(tc); i++ {
+	for i := range tc {
 		r := v1alpha3.TestResult{}
 		r.Name = tc[i].Name
 		r.State = v1alpha3.PassState
