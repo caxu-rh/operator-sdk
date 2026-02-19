@@ -847,7 +847,7 @@ func GetProjectDir() (string, error) {
 	if err != nil {
 		return wd, err
 	}
-	wd = strings.Replace(wd, "/test/e2e", "", -1)
+	wd = strings.ReplaceAll(wd, "/test/e2e", "")
 	return wd, nil
 }
 
@@ -866,7 +866,7 @@ func ReplaceInFile(path, old, new string) error {
 	if !strings.Contains(string(b), old) {
 		return errors.New("unable to find the content to be replaced")
 	}
-	s := strings.Replace(string(b), old, new, -1)
+	s := strings.ReplaceAll(string(b), old, new)
 	err = os.WriteFile(path, []byte(s), info.Mode())
 	if err != nil {
 		return err

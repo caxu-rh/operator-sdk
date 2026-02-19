@@ -119,7 +119,7 @@ func ReplaceInFile(path, o, n string) error {
 	if !strings.Contains(string(b), o) {
 		return errors.New("unable to find the content to be replaced")
 	}
-	s := strings.Replace(string(b), o, n, -1)
+	s := strings.ReplaceAll(string(b), o, n)
 	err = os.WriteFile(path, []byte(s), info.Mode())
 	if err != nil {
 		return err
