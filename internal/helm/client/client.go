@@ -17,6 +17,7 @@ package client
 import (
 	"errors"
 	"io"
+	"maps"
 	"strings"
 
 	"github.com/operator-framework/operator-lib/handler"
@@ -136,9 +137,7 @@ func (c *labelInjectingClient) Build(reader io.Reader, validate bool) (kube.Reso
 		if labels == nil {
 			labels = map[string]string{}
 		}
-		for k, v := range c.labels {
-			labels[k] = v
-		}
+		maps.Copy(labels, c.labels)
 		u.SetLabels(labels)
 		return nil
 	})

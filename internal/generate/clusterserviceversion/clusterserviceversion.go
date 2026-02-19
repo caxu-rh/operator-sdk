@@ -17,6 +17,7 @@ package clusterserviceversion
 import (
 	"fmt"
 	"io"
+	"maps"
 	"path/filepath"
 	"strings"
 
@@ -133,9 +134,7 @@ func (g Generator) setAnnotations(csv *v1alpha1.ClusterServiceVersion) {
 	if annotations == nil {
 		annotations = make(map[string]string)
 	}
-	for k, v := range g.Annotations {
-		annotations[k] = v
-	}
+	maps.Copy(annotations, g.Annotations)
 	csv.SetAnnotations(annotations)
 }
 

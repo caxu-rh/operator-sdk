@@ -16,6 +16,7 @@ package release
 
 import (
 	"fmt"
+	"maps"
 
 	"helm.sh/helm/v3/pkg/chart/loader"
 	helmrelease "helm.sh/helm/v3/pkg/release"
@@ -161,9 +162,7 @@ func parseOverrides(in map[string]string) (map[string]interface{}, error) {
 
 func mergeMaps(a, b map[string]interface{}) map[string]interface{} {
 	out := make(map[string]interface{}, len(a))
-	for k, v := range a {
-		out[k] = v
-	}
+	maps.Copy(out, a)
 	for k, v := range b {
 		if v, ok := v.(map[string]interface{}); ok {
 			if bv, ok := out[k]; ok {

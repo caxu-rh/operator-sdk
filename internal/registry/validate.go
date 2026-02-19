@@ -16,6 +16,7 @@ package registry
 
 import (
 	"fmt"
+	"maps"
 	"os"
 
 	apimanifests "github.com/operator-framework/api/pkg/manifests"
@@ -142,9 +143,7 @@ func RewriteAnnotationsYaml(filename string, content map[string]string) error {
 	}
 
 	// Append the contents to annotationsYaml
-	for key, val := range content {
-		metadata.Annotations[key] = val
-	}
+	maps.Copy(metadata.Annotations, content)
 
 	err = writeAnnotationFile(filename, metadata)
 	if err != nil {

@@ -19,6 +19,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"maps"
 	"strings"
 	"time"
 
@@ -616,9 +617,7 @@ func updateCatalogSourceFields(cs *v1alpha1.CatalogSource, targetPod *corev1.Pod
 	if annotations == nil {
 		annotations = make(map[string]string, len(newAnnotations))
 	}
-	for k, v := range newAnnotations {
-		annotations[k] = v
-	}
+	maps.Copy(annotations, newAnnotations)
 	cs.SetAnnotations(annotations)
 }
 

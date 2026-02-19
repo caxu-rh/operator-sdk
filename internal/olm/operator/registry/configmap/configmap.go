@@ -19,6 +19,7 @@ import (
 	"crypto/sha256"
 	"encoding/base32"
 	"fmt"
+	"maps"
 	"strings"
 
 	apimanifests "github.com/operator-framework/api/pkg/manifests"
@@ -141,9 +142,7 @@ func withBinaryData(kvs map[string][]byte) func(*corev1.ConfigMap) {
 		if cm.BinaryData == nil {
 			cm.BinaryData = map[string][]byte{}
 		}
-		for k, v := range kvs {
-			cm.BinaryData[k] = v
-		}
+		maps.Copy(cm.BinaryData, kvs)
 	}
 }
 

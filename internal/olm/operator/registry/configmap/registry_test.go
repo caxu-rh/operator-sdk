@@ -17,6 +17,7 @@ package configmap
 import (
 	"context"
 	"fmt"
+	"maps"
 
 	"github.com/blang/semver/v4"
 	. "github.com/onsi/ginkgo/v2"
@@ -43,9 +44,7 @@ var _ = Describe("Registry", func() {
 			labels := map[string]string{
 				"package-name": k8sutil.TrimDNS1123Label("pkgName"),
 			}
-			for k, v := range SDKLabels {
-				labels[k] = v
-			}
+			maps.Copy(labels, SDKLabels)
 
 			Expect(makeRegistryLabels("pkgName")).Should(Equal(labels))
 		})

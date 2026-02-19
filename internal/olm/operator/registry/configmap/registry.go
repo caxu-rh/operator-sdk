@@ -17,6 +17,7 @@ package configmap
 import (
 	"context"
 	"fmt"
+	"maps"
 	"path"
 
 	apimanifests "github.com/operator-framework/api/pkg/manifests"
@@ -220,8 +221,6 @@ func makeRegistryLabels(pkgName string) map[string]string {
 	labels := map[string]string{
 		"package-name": k8sutil.TrimDNS1123Label(pkgName),
 	}
-	for k, v := range SDKLabels {
-		labels[k] = v
-	}
+	maps.Copy(labels, SDKLabels)
 	return labels
 }
